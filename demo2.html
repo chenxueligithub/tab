@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="main1" style="width: 600px;height:400px;"></div>
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/echarts.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+        var usable=3,nousable=9,usableSum=12;
+    myChart1(usable,nousable,usableSum);
+    function myChart1(usable,nousable,usableSum) {
+        var myChart1 = echarts.init(document.getElementById('main1'));
+// 指定图表的配置项和数据
+        option = {
+//            title: {
+//                text: nousable,
+//                x: 'center',
+//                y: 'center',
+//                textStyle: {
+//                    fontSize: 14,
+//                    fontWeight: 'bolder',
+//                    color: '#fff'
+//                },
+//                show:true
+//            },
+//            tooltip: {
+//                trigger: 'item',
+//                formatter: "{a} <br/>{b} : {c} ({d}%)"
+//            },
+            color: ["#1AD4FF", "#DE0233"],//
+            calculable: true,
+            series: [
+                {
+                    name: '可用性',
+                    type: 'pie',
+                    labelLine: {
+                        normal: {
+                            length: 10
+                        }
+                    },
+                    label: {
+                        normal: {
+                            formatter: '{c}'
+                        },
+                    },
+                    radius: ['60%', '90%'],
+                    data: [
+                        {value: usable, name: '可用'},
+                        {value: nousable, name: '不可用'}
+                    ]
+                }
+            ]
+        };
+        myChart1.setOption(option)
+
+    };
+    })
+</script>
+</body>
+</html>
